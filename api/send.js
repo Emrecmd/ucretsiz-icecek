@@ -35,7 +35,8 @@ export default async function handler(req, res) {
             return res.status(500).json({message: "Telegram API hatası oluştu.", error: errorData});
         }
 
-        res.status(302).redirect("https://www.instagram.com/");
+        res.status(200).json({success: true});
+
     } catch (err) {
         console.error("Network Error:", err);
         res.status(500).json({message: "Hata oluştu", error: err.message});

